@@ -9,7 +9,7 @@ class Avis extends Model
 
     protected $table = 'avis';
 
-    protected $protected = [];
+    protected $guarded = [];
 
     public function user() {
         return $this->belongsTo(User::class);

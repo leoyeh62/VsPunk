@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Article extends Model
 {
-    protected $protected = [];
+    protected $guarded = [];
 
     public function editeur() {
         return $this->belongsTo(User::class, "user_id");

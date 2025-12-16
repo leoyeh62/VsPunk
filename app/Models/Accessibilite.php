@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Accessibilite extends Model
 {
     //
-    protected  $protected = [];
+    protected $guarded = [];
 
     public function articles() {
         return $this->hasMany(Article::class);
