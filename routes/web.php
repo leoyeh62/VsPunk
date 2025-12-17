@@ -13,12 +13,34 @@ use App\Http\Controllers\ArticleLikeController;
 
 Route::get('/', [HomeController::class, 'index'])->name('accueil');
 
+Route::get('/home', function () {
+    return redirect()->route('accueil');
+})->name("home");
+
+
+Route::get('/articles/create', [ArticleController::class, 'create'])
+    ->middleware('auth')
+    ->name('articles.create');
+
+Route::post('/articles', [ArticleController::class, 'store'])
+    ->middleware('auth')
+    ->name('articles.store');
+
+Route::get('/articles', [ArticleController::class, 'index'])
+    ->name('articles.index');
 
 Route::get('/articles/{article}', [ArticleShowController::class, 'show'])
     ->name('articles.show');
 
-Route::get('/articles', [ArticleController::class, 'index'])
-    ->name('articles.index');
+Route::post('/articles/{article}/like', [ArticleLikeController::class, 'toggle'])
+    ->middleware('auth')
+    ->name('articles.like');
+
+Route::get('/user/{id}', [UserController::class, 'show'])
+    ->name('user.show');
+
+Route::post('/user/{id}/follow', [UserController::class, 'follow'])
+    ->name('user.follow');
 
 Route::get('/contact', function () {
     return view('contact');
@@ -28,25 +50,7 @@ Route::get('/test-vite', function () {
     return view('test-vite');
 })->name("test-vite");
 
-Route::get('/home', function () {
-    return redirect()->route('accueil');
-})->name("home");
 
-Route::get('/articles/{id}', [ArticleShowController::class, 'show'])
-    ->name('articles.show');
 
-Route::get('/user/{id}', [UserController::class, 'show'])
-    ->name('user.show');
-
-Route::post('/user/{id}/follow', [UserController::class, 'follow'])
-    ->name('user.follow');
-
-Route::post('/articles/{article}/like', [ArticleLikeController::class, 'toggle'])
-    ->middleware('auth')
-    ->name('articles.like');
-
-Route::get('/articles/create', function () {
-    return 'Page création article (à faire)';
-})->name('articles.create');
 
 
