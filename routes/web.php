@@ -20,4 +20,9 @@ Route::get('/home', function () {
     return view('home');
 })->name("home");
 
+Route::get('/user/{id}', [App\Http\Controllers\UserController::class, 'show'])
+    ->name('user.show');
 
+Route::post('/user/{id}/follow', [App\Http\Controllers\UserController::class, 'toggleFollow'])
+    ->middleware('auth')
+    ->name('user.follow');
