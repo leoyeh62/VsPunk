@@ -52,6 +52,6 @@
         @endforelse
     </ul>
 
-    <x-follow :user="$user" />
+    <x-follow-button :user="$user" />
 
 </x-layout.app>
