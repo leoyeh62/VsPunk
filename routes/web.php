@@ -34,6 +34,8 @@ Route::middleware(['auth'])->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::post('/profile/password', [NewPasswordController::class, 'updateProfilePassword'])
             ->name('profile.password.update');
+    Route::post('/articles/{article}/publish', [ArticleController::class, 'publish'])
+        ->name('articles.publish');
 });
 Route::post('/articles/{article}/like', [ArticleLikeController::class, 'toggle'])
     ->middleware('auth')
