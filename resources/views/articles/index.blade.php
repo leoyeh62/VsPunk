@@ -1,52 +1,84 @@
 <x-layout.app title="Tous les articles">
-    <x-header/>
-    <form action="{{ route('articles.index') }}" method="GET" class="mb-12">
-        <div class="flex items-center gap-4 bg-black/60 backdrop-blur-md p-5 rounded-2xl border border-white/20 w-full">
-            <label for="searchT" class="text-gray-200 font-medium whitespace-nowrap">Titre :</label>
-            <input type="text" id="searchT" name="searchT"
-                   class="flex-1 px-4 py-2 rounded-lg bg-white/20 text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-teal-400"
-                   placeholder="Rechercher un article..." />
-        </div>
-        <div class="flex items-center gap-4 bg-black/60 backdrop-blur-md p-5 rounded-2xl border border-white/20 w-full">
-            <label for="searchA" class="text-gray-200 font-medium whitespace-nowrap">Auteur :</label>
-            <input type="text" id="searchA" name="searchA"
-                   class="flex-1 px-4 py-2 rounded-lg bg-white/20 text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-teal-400"
-                   placeholder="Rechercher un auteur..." />
-        </div>
-        <div class="flex items-center gap-4 bg-black/60 backdrop-blur-md p-5 rounded-2xl border border-white/20 w-full">
-            <label for="searchR" class="text-gray-200 font-medium whitespace-nowrap">Rythme :</label>
-            <input type="text" id="searchR" name="searchR"
-                   class="flex-1 px-4 py-2 rounded-lg bg-white/20 text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-teal-400"
-                   placeholder="Rechercher un rythme..." />
-        </div>
-        <div class="flex items-center gap-4 bg-black/60 backdrop-blur-md p-5 rounded-2xl border border-white/20 w-full">
-            <label for="searchAccess" class="text-gray-200 font-medium whitespace-nowrap">Accessibilité :</label>
-            <input type="text" id="searchAccess" name="searchAccess"
-                   class="flex-1 px-4 py-2 rounded-lg bg-white/20 text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-teal-400"
-                   placeholder="Rechercher une accessibilité..." />
-        </div>
-        <div class="flex items-center gap-4 bg-black/60 backdrop-blur-md p-5 rounded-2xl border border-white/20 w-full">
+    <div class="articles-page">
 
-            <button type="submit"
-                    class="px-6 py-2 rounded-full bg-teal-500 hover:bg-teal-600 text-white font-semibold transition-all">
-                Filtrer
-            </button>
+        <header class="articles-header">
+            <a href="{{ route('accueil') }}" class="logo">Logo</a>
+            <x-nav></x-nav>
+        </header>
+
+
+        <div class="articles-search-section">
+            <img src="{{ asset('images/stickers/lightning.png') }}" alt="" class="articles-sticker sticker-lightning"
+                onerror="this.style.display='none'">
+            <img src="{{ asset('images/stickers/skull.png') }}" alt="" class="articles-sticker sticker-skull"
+                onerror="this.style.display='none'">
+
         </div>
 
-    </form>
-    <div style="
-        display:grid;
-        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-        gap:20px;
-        padding:20px;
-    ">
-        @foreach($articles as $article)
-            <x-article-card :article="$article" />
-        @endforeach
+
+        <form action="{{ route('articles.index') }}" method="GET" class="articles-filter-form">
+            <div class="filter-row">
+                <label for="searchT">Titre :</label>
+                <input type="text" id="searchT" name="searchT" placeholder="Rechercher un article..."
+                    value="{{ request('searchT') }}">
+            </div>
+            <div class="filter-row">
+                <label for="searchA">Auteur :</label>
+                <input type="text" id="searchA" name="searchA" placeholder="Rechercher un auteur..."
+                    value="{{ request('searchA') }}">
+            </div>
+            <div class="filter-row">
+                <label for="searchR">Rythme :</label>
+                <input type="text" id="searchR" name="searchR" placeholder="Rechercher un rythme..."
+                    value="{{ request('searchR') }}">
+            </div>
+            <div class="filter-row">
+                <label for="searchAccess">Accessibilité :</label>
+                <input type="text" id="searchAccess" name="searchAccess" placeholder="Rechercher une accessibilité..."
+                    value="{{ request('searchAccess') }}">
+            </div>
+            <button type="submit" class="submit-btn">Filtrer</button>
+        </form>
+
+
+        <img src="{{ asset('images/stickers/eye.png') }}" alt="" class="articles-sticker sticker-eye"
+            onerror="this.style.display='none'">
+        <img src="{{ asset('images/stickers/flower.png') }}" alt="" class="articles-sticker sticker-flower"
+            onerror="this.style.display='none'">
+
+
+        <div class="articles-grid">
+            @foreach($articles as $article)
+                <x-article-card :article="$article" />
+            @endforeach
+        </div>
+
+
+        <div class="articles-see-more">
+            <svg class="arrow-svg" viewBox="0 0 80 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5 20 Q20 15, 35 20 T65 20" stroke="#d4c4a8" stroke-width="3" fill="none"
+                    stroke-linecap="round" />
+                <path d="M55 12 L70 20 L55 28" stroke="#d4c4a8" stroke-width="3" fill="none" stroke-linecap="round"
+                    stroke-linejoin="round" />
+            </svg>
+            <a href="{{ route('accueil') }}" class="btn-see-more">Retour à l'accueil</a>
+        </div>
     </div>
-    <div>
-        <a href="{{ route('accueil') }}">
-            Voir moins
-        </a>
-    </div>
+
+    <script>
+        function filterArticles(value) {
+
+            const cards = document.querySelectorAll('.article-card-punk');
+            cards.forEach(card => {
+                const title = card.querySelector('.card-title')?.textContent.toLowerCase() || '';
+                const author = card.querySelector('.card-author')?.textContent.toLowerCase() || '';
+                if (title.includes(value.toLowerCase()) || author.includes(value.toLowerCase())) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = value ? 'none' : 'block';
+                }
+            });
+        }
+    </script>
+    <x-footer></x-footer>
 </x-layout.app>

@@ -1,21 +1,61 @@
 <x-layout.app title="Connexion">
-    <form action="{{ route('login') }}" method="POST" style="max-width: 400px; margin: auto;">
-        @csrf
-        <div style="margin-bottom: 1rem;">
-            <label for="email">Email</label><br/>
-            <input type="email" id="email" name="email" required placeholder="Email" style="width: 100%; padding: 0.5rem;"/>
+    <div class="auth-page">
+        <!-- Header punk -->
+        <header class="articles-header">
+            <a href="{{ route('accueil') }}" class="logo">Logo</a>
+            <x-nav></x-nav>
+        </header>
+
+        <div class="auth-container">
+            <img src="{{ asset('images/asset/1.png') }}" alt="" class="auth-sticker auth-sticker-1"
+                onerror="this.style.display='none'">
+            <img src="{{ asset('images/asset/4.png') }}" alt="" class="auth-sticker auth-sticker-2"
+                onerror="this.style.display='none'">
+            <img src="{{ asset('images/asset/3.png') }}" alt="" class="auth-sticker auth-sticker-3"
+                onerror="this.style.display='none'">
+            <img src="{{ asset('images/asset/5.png') }}" alt="" class="auth-sticker auth-sticker-4"
+                onerror="this.style.display='none'">
+
+            <div class="auth-card">
+                <h1>Connexion</h1>
+
+                @if($errors->any())
+                    <div class="auth-errors">
+                        <ul>
+                            @foreach($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+
+                <form action="{{ route('login') }}" method="POST" class="auth-form">
+                    @csrf
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required placeholder="votre@email.com"
+                            value="{{ old('email') }}">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password">Mot de passe</label>
+                        <input type="password" id="password" name="password" required placeholder="••••••••">
+                    </div>
+
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="remember" name="remember">
+                        <label for="remember">Se souvenir de moi</label>
+                    </div>
+
+                    <button type="submit" class="btn-submit">Se connecter</button>
+                </form>
+
+                <p class="auth-link">
+                    Pas encore de compte ? <a href="{{ route('register') }}">Inscrivez-vous</a>
+                </p>
+            </div>
         </div>
-        <div style="margin-bottom: 1rem;">
-            <label for="password">Mot de passe</label><br/>
-            <input type="password" id="password" name="password" required placeholder="Mot de passe" style="width: 100%; padding: 0.5rem;"/>
-        </div>
-        <div style="margin-bottom: 1rem;">
-            <label>
-                <input type="checkbox" name="remember"/> Remember me
-            </label>
-        </div>
-        <div>
-            <input type="submit" value="Se connecter" style="padding: 0.5rem 1rem;"/>
-        </div>
-    </form>
+
+        <x-footer></x-footer>
+    </div>
 </x-layout.app>
