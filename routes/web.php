@@ -4,6 +4,8 @@ use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\HomeController;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
+use App\Models\Article;
+use App\Http\Controllers\ArticleShowController;
 
 
 Route::get('/', [HomeController::class, 'index'])->name('accueil');
@@ -27,5 +29,8 @@ Route::get('/home', function () {
     return view('home');
 })->name("home");
 
-Route::get('/user/{id}', [App\Http\Controllers\UserController::class, 'show'])
-    ->name('user.show');
+Route::get('/articles/{id}', [ArticleShowController::class, 'show'])
+    ->name('articles.show');
+
+
+
