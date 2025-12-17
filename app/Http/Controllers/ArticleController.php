@@ -3,13 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Article;
-use Illuminate\Http\Request;
 
 class ArticleController extends Controller
 {
-    /**
-     * Affiche un article.
-     */
     public function show(int $id)
     {
         $article = Article::with([
