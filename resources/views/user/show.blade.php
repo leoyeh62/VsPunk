@@ -53,5 +53,5 @@
     </ul>
 
     <x-follow-button :user="$user" />
-
+    <a href="/" class="btn-secondary">⬅ Retour à l’accueil</a>
 </x-layout.app>
