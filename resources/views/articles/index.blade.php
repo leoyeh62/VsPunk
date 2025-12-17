@@ -1,4 +1,4 @@
-<x-layout.app title="Accueil">
+<x-layout.app title="Tous les articles">
     <x-header/>
 
     <div style="
@@ -11,10 +11,9 @@
             <x-article-card :article="$article" />
         @endforeach
     </div>
-
     <div>
-        <a href="{{ route('articles.index') }}">
-            Voir plus d’articles
+        <a href="{{ route('accueil') }}">
+            Voir moins
         </a>
     </div>
 </x-layout.app>
