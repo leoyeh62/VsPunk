@@ -1,7 +1,7 @@
 <nav class="top-buttons">
-    <a href="{{ route('test-vite') }}" class="btn btn-black" id="btn-creer">Créer</a>
-
     @auth
+        <a href="{{ route('articles.create') }}" class="btn btn-black" id="btn-creer">Ajouter un article</a>
+
         <a href="{{ route('logout') }}" class="btn btn-black" id="btn-connecter"
            onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
             Se déconnecter
