@@ -94,4 +94,17 @@ class ArticleController extends Controller
             ->route('articles.index')
             ->with('success', 'Article créé avec succès');
     }
+    public function publish(Article $article)
+    {
+        if(auth()->id() !== $article->user_id) {
+            abort(403);
+        }
+
+        $article->en_ligne = 1;
+        $article->save();
+
+        return redirect()->route('articles.show', $article->id)
+            ->with('success', 'Article publié !');
+    }
+
 }

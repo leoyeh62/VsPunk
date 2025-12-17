@@ -57,6 +57,9 @@ Route::middleware(['auth'])->group(function () {
 
     Route::post('/profile/password', [NewPasswordController::class, 'updateProfilePassword'])
         ->name('profile.password.update');
+
+    Route::post('/articles/{article}/publish', [ArticleController::class, 'publish'])
+        ->name('articles.publish');
 });
 
 
