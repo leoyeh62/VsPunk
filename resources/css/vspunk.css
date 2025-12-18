@@ -63,11 +63,30 @@ body {
     gap: 8px;
 }
 
+/* Logo home page */
+.home-logo {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    z-index: 100;
+}
+
+.home-logo-img {
+    height: 60px;
+    width: auto;
+    filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.3));
+    transition: transform 0.2s ease;
+}
+
+.home-logo-img:hover {
+    transform: scale(1.05);
+}
+
 /* Boutons */
 .btn {
     border: none;
     padding: 8px 16px;
-    border-radius: 20px;
+    border-radius: 0;
     font-family: var(--font-hand);
     font-size: 0.85rem;
     cursor: pointer;
@@ -171,6 +190,63 @@ body {
 }
 
 
+.decorative-hand {
+    position: fixed;
+    width: 500px;
+    height: auto;
+
+
+    opacity: 0.85;
+    filter: drop-shadow(6px 6px 12px rgba(0, 0, 0, 0.4));
+}
+
+.hand-left {
+    left: -120px;
+    top: 50%;
+    transform: translateY(-50%) rotate(-10deg);
+}
+
+.hand-right {
+    right: -120px;
+    top: 50%;
+    transform: translateY(-50%) scaleX(-1) rotate(-10deg);
+}
+
+@media (max-width: 1400px) {
+    .decorative-hand {
+        width: 400px;
+    }
+
+    .hand-left {
+        left: -100px;
+    }
+
+    .hand-right {
+        right: -100px;
+    }
+}
+
+@media (max-width: 1100px) {
+    .decorative-hand {
+        width: 300px;
+    }
+
+    .hand-left {
+        left: -80px;
+    }
+
+    .hand-right {
+        right: -80px;
+    }
+}
+
+@media (max-width: 900px) {
+    .decorative-hand {
+        display: none;
+    }
+}
+
+
 .main-content {
     position: relative;
     padding: 50px 20px 30px;
@@ -187,7 +263,7 @@ body {
 .search-bar {
     background-color: var(--bg-paper-light);
     padding: 12px 18px;
-    border-radius: 25px;
+    border-radius: 0;
     display: flex;
     align-items: center;
     width: 300px;
@@ -229,7 +305,7 @@ body {
 .card {
     background-color: var(--bg-paper);
     width: 165px;
-    border-radius: 10px 10px 20px 20px;
+    border-radius: 0;
     overflow: hidden;
     color: var(--text-black);
     box-shadow: 6px 6px 0 rgba(0, 0, 0, 0.35);
@@ -279,7 +355,7 @@ body {
             rgba(100, 180, 80, 0.6) 50%,
             rgba(220, 200, 50, 0.7) 100%);
     margin: 10px;
-    border-radius: 4px;
+    border-radius: 0;
 }
 
 .album-title {
@@ -303,7 +379,7 @@ body {
 .album-title-wrapper.simulation-style {
     background: rgba(20, 20, 20, 0.5);
     padding: 10px;
-    border-radius: 4px;
+    border-radius: 0;
 }
 
 .album-title-alt {
@@ -480,10 +556,14 @@ body {
 }
 
 .articles-header .logo {
-    font-family: var(--font-hand);
-    font-size: 2rem;
-    color: var(--text-black);
     text-decoration: none;
+    display: flex;
+    align-items: center;
+}
+
+.articles-header .logo-img {
+    height: 50px;
+    width: auto;
 }
 
 .articles-header .nav-buttons {
@@ -497,7 +577,7 @@ body {
     border: 2px solid var(--text-black);
     color: var(--text-black);
     padding: 8px 18px;
-    border-radius: 20px;
+    border-radius: 0;
     font-family: var(--font-body);
     font-size: 0.85rem;
     cursor: pointer;
@@ -513,7 +593,7 @@ body {
 .articles-header .avatar {
     width: 40px;
     height: 40px;
-    border-radius: 50%;
+    border-radius: 0;
     background-color: var(--bg-paper-light);
     border: 2px solid var(--text-black);
 }
@@ -529,7 +609,7 @@ body {
 .articles-search-bar {
     background-color: var(--bg-paper-light);
     padding: 14px 24px;
-    border-radius: 30px;
+    border-radius: 0;
     display: flex;
     align-items: center;
     width: 100%;
@@ -560,7 +640,7 @@ body {
 
 .articles-filter-form {
     background-color: var(--bg-paper);
-    border-radius: 20px;
+    border-radius: 0;
     padding: 25px;
     margin: 30px auto;
     max-width: 500px;
@@ -584,7 +664,7 @@ body {
 .articles-filter-form input[type="text"] {
     background-color: var(--bg-paper-light);
     border: 2px solid var(--text-black);
-    border-radius: 12px;
+    border-radius: 0;
     padding: 12px 16px;
     font-family: var(--font-body);
     font-size: 0.9rem;
@@ -603,7 +683,7 @@ body {
     color: var(--bg-paper);
     border: none;
     padding: 12px 28px;
-    border-radius: 25px;
+    border-radius: 0;
     font-family: var(--font-hand);
     font-size: 1rem;
     cursor: pointer;
@@ -616,6 +696,81 @@ body {
     box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.3);
 }
 
+
+/* ==========================================
+   CONTENEUR DÉCORATIF AVEC STICKERS
+   ========================================== */
+.cards-decoration-container {
+    position: relative;
+    padding: 80px 120px;
+    margin: 30px 0;
+}
+
+.cards-sticker {
+    position: absolute;
+    pointer-events: none;
+    z-index: 5;
+}
+
+/* Crâne jaune - haut gauche */
+.sticker-skull-left {
+    width: 180px;
+    height: auto;
+    top: -20px;
+    left: 20px;
+    transform: rotate(-10deg);
+}
+
+/* Lignes blanches - haut droite */
+.sticker-lines-top-right {
+    width: 100px;
+    height: auto;
+    top: 30px;
+    right: 50px;
+    transform: rotate(15deg);
+}
+
+/* Lignes blanches - bas gauche */
+.sticker-lines-bottom-left {
+    width: 80px;
+    height: auto;
+    bottom: 100px;
+    left: 60px;
+    transform: rotate(-20deg);
+}
+
+/* Flamme rose - bas droite */
+.sticker-fire-right {
+    width: 200px;
+    height: auto;
+    bottom: 50px;
+    right: 20px;
+    transform: rotate(5deg);
+}
+
+@media (max-width: 1200px) {
+    .cards-decoration-container {
+        padding: 60px 80px;
+    }
+
+    .sticker-skull-left {
+        width: 140px;
+    }
+
+    .sticker-fire-right {
+        width: 150px;
+    }
+}
+
+@media (max-width: 900px) {
+    .cards-decoration-container {
+        padding: 40px 20px;
+    }
+
+    .cards-sticker {
+        display: none;
+    }
+}
 
 .articles-grid {
     display: grid;
@@ -630,11 +785,44 @@ body {
 
 .article-card-punk {
     background-color: var(--bg-paper);
-    border-radius: 20px;
+    border-radius: 0;
     border: 3px solid var(--text-black);
-    overflow: hidden;
+    overflow: visible;
     box-shadow: 8px 8px 0 rgba(0, 0, 0, 0.35);
     position: relative;
+}
+
+/* Picks dans les coins des cartes */
+.card-pick {
+    position: absolute;
+    width: 35%;
+    height: auto;
+    z-index: 10;
+    pointer-events: none;
+}
+
+.pick-top-left {
+    top: -12px;
+    left: -12px;
+    transform: rotate(-30deg);
+}
+
+.pick-top-right {
+    top: -12px;
+    right: -12px;
+    transform: rotate(30deg);
+}
+
+.pick-bottom-left {
+    bottom: -12px;
+    left: -12px;
+    transform: rotate(-60deg);
+}
+
+.pick-bottom-right {
+    bottom: -12px;
+    right: -12px;
+    transform: rotate(60deg);
 }
 
 
@@ -648,7 +836,7 @@ body {
     width: 140px;
     height: 140px;
     flex-shrink: 0;
-    border-radius: 8px;
+    border-radius: 0;
     border: 3px solid var(--text-black);
     overflow: hidden;
 }
@@ -734,7 +922,7 @@ body {
     background-color: var(--bg-paper-light);
     border: 2px solid var(--text-black);
     padding: 4px 12px;
-    border-radius: 15px;
+    border-radius: 0;
     font-family: var(--font-body);
     font-size: 0.75rem;
     color: var(--text-black);
@@ -767,7 +955,7 @@ body {
     color: var(--text-black);
     border: 2px solid var(--text-black);
     padding: 12px 30px;
-    border-radius: 25px;
+    border-radius: 0;
     font-family: var(--font-hand);
     font-size: 1rem;
     cursor: pointer;
@@ -867,7 +1055,7 @@ body {
 
 .article-show-card {
     background-color: var(--bg-paper);
-    border-radius: 20px;
+    border-radius: 0;
     border: 3px solid var(--text-black);
     box-shadow: 10px 10px 0 rgba(0, 0, 0, 0.35);
     overflow: hidden;
@@ -884,7 +1072,7 @@ body {
     width: 200px;
     height: 200px;
     flex-shrink: 0;
-    border-radius: 10px;
+    border-radius: 0;
     border: 3px solid var(--text-black);
     overflow: hidden;
 }
@@ -921,7 +1109,7 @@ body {
     background-color: var(--bg-paper-light);
     border: 2px solid var(--text-black);
     padding: 6px 16px;
-    border-radius: 20px;
+    border-radius: 0;
     font-family: var(--font-body);
     font-size: 0.8rem;
 }
@@ -971,7 +1159,7 @@ body {
     padding: 20px;
     background: var(--bg-paper);
     border: 3px solid var(--text-black);
-    border-radius: 15px;
+    border-radius: 0;
     box-shadow: 5px 5px 0 rgba(0, 0, 0, 0.25);
 }
 
@@ -991,7 +1179,7 @@ body {
     gap: 15px;
     background: var(--text-black);
     padding: 15px 20px;
-    border-radius: 12px;
+    border-radius: 0;
 }
 
 .media-player-icon {
@@ -1014,7 +1202,7 @@ body {
 .punk-audio-player {
     flex: 1;
     height: 45px;
-    border-radius: 8px;
+    border-radius: 0;
     background: transparent;
 }
 
@@ -1122,7 +1310,7 @@ body {
 
 .user-profile-card {
     background-color: var(--bg-paper);
-    border-radius: 20px;
+    border-radius: 0;
     border: 3px solid var(--text-black);
     box-shadow: 10px 10px 0 rgba(0, 0, 0, 0.35);
     overflow: hidden;
@@ -1141,7 +1329,7 @@ body {
     width: 120px;
     height: 120px;
     flex-shrink: 0;
-    border-radius: 50%;
+    border-radius: 0;
     border: 4px solid var(--text-black);
     overflow: hidden;
     background-color: var(--bg-paper-light);
@@ -1229,7 +1417,7 @@ body {
     gap: 15px;
     background-color: var(--bg-paper-light);
     padding: 12px 15px;
-    border-radius: 12px;
+    border-radius: 0;
     border: 2px solid var(--text-black);
 }
 
@@ -1237,7 +1425,7 @@ body {
     width: 60px;
     height: 60px;
     object-fit: cover;
-    border-radius: 8px;
+    border-radius: 0;
     border: 2px solid var(--text-black);
 }
 
@@ -1269,7 +1457,7 @@ body {
     gap: 10px;
     background-color: var(--bg-paper-light);
     padding: 10px 16px;
-    border-radius: 20px;
+    border-radius: 0;
     border: 2px solid var(--text-black);
     font-family: var(--font-body);
     font-size: 0.9rem;
@@ -1280,7 +1468,7 @@ body {
     width: 40px;
     height: 40px;
     object-fit: cover;
-    border-radius: 50%;
+    border-radius: 0;
     border: 2px solid var(--text-black);
 }
 
@@ -1288,7 +1476,7 @@ body {
     background-color: var(--text-black);
     color: var(--bg-paper);
     padding: 2px 8px;
-    border-radius: 10px;
+    border-radius: 0;
     font-size: 0.75rem;
     font-weight: 600;
 }
@@ -1305,7 +1493,7 @@ body {
     color: var(--bg-paper);
     border: none;
     padding: 14px 35px;
-    border-radius: 25px;
+    border-radius: 0;
     font-family: var(--font-hand);
     font-size: 1.1rem;
     cursor: pointer;
@@ -1323,13 +1511,95 @@ body {
     border: 2px solid var(--text-black);
 }
 
- .empty-message {
+.empty-message {
     font-family: var(--font-body);
     font-size: 0.9rem;
     color: #666;
     font-style: italic;
 }
 
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 20px;
+}
+
+.form-label {
+    font-family: var(--font-hand);
+    font-size: 1.1rem;
+    color: var(--text-black);
+}
+
+.form-input {
+    background-color: var(--bg-paper-light);
+    border: 3px solid var(--text-black);
+    border-radius: 0;
+    padding: 14px 18px;
+    font-family: var(--font-body);
+    font-size: 1rem;
+    color: var(--text-black);
+    transition: all 0.2s ease;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.form-input:focus {
+    outline: none;
+    border-color: var(--accent-pink);
+    box-shadow: 0 0 0 4px rgba(217, 75, 160, 0.25);
+}
+
+.form-input-file {
+    background-color: var(--bg-paper-light);
+    border: 3px dashed var(--text-black);
+    border-radius: 0;
+    padding: 20px;
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    color: var(--text-black);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.form-input-file:hover {
+    background-color: var(--bg-paper);
+    border-style: solid;
+}
+
+/* Styles pour textarea */
+textarea.form-input {
+    resize: vertical;
+    min-height: 100px;
+    line-height: 1.5;
+}
+
+/* Styles pour select */
+.form-select {
+    cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%231a1a1a' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 15px center;
+    padding-right: 40px;
+}
+
+.form-select:focus {
+    outline: none;
+    border-color: var(--accent-pink);
+    box-shadow: 0 0 0 4px rgba(217, 75, 160, 0.25);
+}
+
+.user-email,
+.user-date {
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    color: var(--text-dark);
+    margin: 0;
+}
 
 @media (max-width: 600px) {
     .user-profile-header {
@@ -1376,7 +1646,7 @@ body {
 
 .auth-card {
     background-color: var(--bg-paper);
-    border-radius: 25px;
+    border-radius: 0;
     border: 4px solid var(--text-black);
     box-shadow: 12px 12px 0 rgba(0, 0, 0, 0.4);
     padding: 40px 35px;
@@ -1418,7 +1688,7 @@ body {
 .auth-form input[type="password"] {
     background-color: var(--bg-paper-light);
     border: 3px solid var(--text-black);
-    border-radius: 15px;
+    border-radius: 0;
     padding: 14px 18px;
     font-family: var(--font-body);
     font-size: 1rem;
@@ -1465,7 +1735,7 @@ body {
     color: var(--bg-paper);
     border: none;
     padding: 16px 30px;
-    border-radius: 25px;
+    border-radius: 0;
     font-family: var(--font-hand);
     font-size: 1.2rem;
     cursor: pointer;
@@ -1539,7 +1809,7 @@ body {
 .auth-errors {
     background-color: rgba(220, 50, 50, 0.15);
     border: 2px solid #c0392b;
-    border-radius: 12px;
+    border-radius: 0;
     padding: 15px;
     margin-bottom: 20px;
 }
@@ -1600,7 +1870,7 @@ body {
     gap: 8px;
     padding: 10px 18px;
     border: 2px solid var(--text-black);
-    border-radius: 20px;
+    border-radius: 0;
     font-family: var(--font-body);
     font-size: 0.9rem;
     cursor: pointer;
@@ -1645,7 +1915,7 @@ body {
 .reaction-count {
     background: var(--bg-paper-light);
     padding: 2px 8px;
-    border-radius: 10px;
+    border-radius: 0;
     font-size: 0.8rem;
     font-weight: 600;
     border: 1px solid var(--text-black);
