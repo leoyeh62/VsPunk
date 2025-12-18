@@ -32,7 +32,7 @@
             Cette page s'est fait la malle comme un vrai punk rebelle. 
             Elle n'existe pas ou a été déplacée ailleurs.
         </p>
-        <a href="/" class="btn-home">Retour à l'accueil</a>
+        <a href="{{ route('accueil') }}" class="btn-home">Retour à l'accueil</a>
     </div>
 
 </body>
