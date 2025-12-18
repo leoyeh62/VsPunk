@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ArticleCommentController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ArticleController;
@@ -31,6 +32,15 @@ Route::middleware(['auth'])->group(function () {
 
     Route::post('/articles/{article}/like', [ArticleLikeController::class, 'toggle'])
         ->name('articles.like');
+
+    Route::post('/articles/{article}/publish', [ArticleController::class, 'publish'])
+        ->name('articles.publish');
+
+    Route::post('/articles/{article}/edit', [ArticleController::class, 'edit'])
+        ->name('articles.edit');
+
+    Route::post('/articles/{article}/update', [ArticleController::class, 'update'])
+        ->name('articles.update');
 });
 Route::get('/articles/{article}', [ArticleShowController::class, 'show'])
     ->name('articles.show');
@@ -57,9 +67,6 @@ Route::middleware(['auth'])->group(function () {
 
     Route::post('/profile/password', [NewPasswordController::class, 'updateProfilePassword'])
         ->name('profile.password.update');
-
-    Route::post('/articles/{article}/publish', [ArticleController::class, 'publish'])
-        ->name('articles.publish');
 });
 
 
@@ -70,3 +77,13 @@ Route::get('/contact', function () {
 Route::get('/test-vite', function () {
     return view('test-vite');
 })->name('test-vite');
+
+Route::post('/articles/{article}/comment', [ArticleCommentController::class, 'store'])
+    ->middleware('auth')
+    ->name('articles.comment');
+
+Route::delete('/avis/{avis}', [ArticleCommentController::class, 'destroy'])
+    ->middleware('auth')
+    ->name('avis.destroy');
+
+
