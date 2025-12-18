@@ -94,4 +94,41 @@ class ArticleController extends Controller
             ->route('articles.index')
             ->with('success', 'Article créé avec succès');
     }
+    public function publish(Article $article)
+    {
+        if(auth()->id() !== $article->user_id) {
+            abort(403);
+        }
+
+        $article->en_ligne = 1;
+        $article->save();
+
+        return redirect()->route('articles.show', $article->id)
+            ->with('success', 'Article publié !');
+    }
+    public function edit(Article $article) {
+        if(auth()->id() !== $article->user_id) {
+            abort(403);
+        }
+        return view('articles.edit', [
+            'rythmes' => Rythme::all(),
+            'accessibilites' => Accessibilite::all(),
+            'conclusions' => Conclusion::all(),'article' => $article]);
+    }
+
+    public function update(Request $request, Article $article) {
+
+        $article->update([
+            'titre' => $request->titre,
+            'resume' => $request->resume,
+            'texte' => $request->texte,
+            'image' => $request->image,
+            'media' => $request->media,
+            'rythme_id' => $request->rythme_id,
+            'accessibilite_id' => $request->accessibilite_id,
+            'conclusion_id' => $request->conclusion_id,
+        ]);
+
+        return redirect()->route('articles.show', $article);
+    }
 }
