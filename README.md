@@ -181,4 +181,39 @@ Ce projet est un projet éducatif développé dans le cadre d'un cursus universi
 Si vous rencontrez un problème, n'hésitez pas à ouvrir une [issue](https://github.com/leoyeh62/VsPunk/issues) sur GitHub.
 
 ## 🖼️ Images du Site 
-![page d'accueil]()
+
+### Page d'accueil
+![page d'accueil](images/page_d'accueil(2).jpeg)
+
+### Liste des articles
+![liste des articles](images/liste_des_articles.jpeg)
+
+### Exemple d'article
+![exemple d'article](images/exemple_article.jpeg)
+
+### Profil d'un utilisateur
+![profil d'un utilisateur](images/profil_d'un_utilisateur.jpeg)
+
+### Création d'un article 
+![creation_article](images/creation_article.jpeg)
+
+### Article personnel
+![article_perso](images/article_personnel.jpeg)
+
+### Edition de l'article personnel
+![edit_article_perso](images/edit_article_perso.jpeg)
+
+### Inscription utilisateur
+![inscription](images/inscription.jpeg)
+
+### Connexion utilisateur
+![connexion](images/connexion.jpeg)
+
+### Profil personnel
+![profil](images/profil_perso.jpeg)
+
+### Modification du profil
+![modif_profil](images/modil_profil.jpeg)
+
+### Page 404
+![404](images/page-404.jpeg)
