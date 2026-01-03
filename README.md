@@ -1,159 +1,184 @@
-## Blog sur la musique
+# VsPunk 🎵
 
-Groupe but25_groupe2
+Un blog moderne dédié à la musique, développé avec Laravel.
 
-## Version initiale
+## 📋 Prérequis
 
-Pour lancer avec succès une première version de votre site web pendant la phase de développement, il faut exécuter les
-commandes suivantes sur votre machine de développement :
+- PHP >= 8.0
+- Composer
+- Node.js & NPM
+- MySQL ou SQLite
 
-```shell
-# A partir de la racine de votre projet
+## 🚀 Installation
 
-# installation des dépendances
-composer install 
+### 1. Cloner le projet
 
-# installation des outils pour la construction du front
-npm install 
-# Modification du front en cours de développement
-npm run dev
-# Construction du front pour la version exploitation
-npm run build
+```bash
+git clone https://github.com/leoyeh62/VsPunk.git
+cd VsPunk
+```
 
-# liaison avec le SGBD et la base de données utilisée
+### 2. Installer les dépendances
+
+```bash
+# Dépendances PHP
+composer install
+
+# Dépendances JavaScript
+npm install
+```
+
+### 3. Configuration de l'environnement
+
+```bash
+# Copier le fichier d'environnement
 cp .env.example .env
 
+# Générer la clé d'application
+php artisan key:generate
+```
 
-#########################################################
-#
-# Ici il faut modifier en particulier les variables suivantes
-#
+### 4. Configuration de la base de données
+
+Éditez le fichier `.env` et configurez votre base de données :
+
+**Pour SQLite (développement local) :**
+```env
 DB_CONNECTION=sqlite
+# Commentez les lignes suivantes
 # DB_HOST=127.0.0.1
 # DB_PORT=3306
-# DB_DATABASE=marathon_24
+# DB_DATABASE=vspunk
 # DB_USERNAME=root
 # DB_PASSWORD=
-#
-#
-#########################################################
+```
 
-# Génération de la clé initiale
+**Pour MySQL (production) :**
+```env
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=vspunk
+DB_USERNAME=votre_utilisateur
+DB_PASSWORD=votre_mot_de_passe
+```
 
-php artisan key:generate
+### 5. Initialiser la base de données
 
-# génération des tables dans votre base de données
-
+```bash
+# Créer les tables
 php artisan migrate
 
-# ou pour ré-initialiser
-
+# Ou réinitialiser complètement
 php artisan migrate:fresh
 
-# Initialisation des données de départ
-
-cp -r resources/images storage/app/public
-
-# Création du lien physique en storage/app/public et public/storage
-
+# Créer le lien symbolique pour le stockage
 php artisan storage:link
 
-# Ajout de données aléatoire dans les tables de la base de données
+# Copier les images par défaut
+cp -r resources/images storage/app/public
 
+# Peupler avec des données de test (optionnel)
 php artisan db:seed
+```
 
-# Lancement de l'application web pour le développement
+### 6. Compiler les assets
 
+```bash
+# Mode développement (avec hot reload)
+npm run dev
+
+# Mode production
+npm run build
+```
+
+### 7. Lancer l'application
+
+```bash
 php artisan serve
 ```
 
-Si toutes les commandes précédentes ont été exécutées, votre application doit être accessible à
-l'adresse [http://localhost:8000](http://localhost:8000)
+Votre application sera accessible sur **http://localhost:8000**
 
-## Le déploiement sur la machine marathon
+## 🛠️ Technologies utilisées
 
-Chaque modification de la branche main de votre projet sur [gitlab](https://gitlab.univ-artois.fr) entraine le
-déploiement de votre site sur la machine marathon.
+- **Backend** : Laravel (PHP)
+- **Frontend** : Blade Templates, CSS
+- **Base de données** : MySQL / SQLite
+- **Build** : Vite
 
-### Création des variables d'environnement
-
-Pour que le déploiement se déroule bien, il faut configurer deux variables dans votre projet sur gitlab.
-
-- Une variable `NAME` qui doit contenir votre nom de login sur la machine marathon qui vous a été délivré en début de
-  marathon.
-- Une variable `SSH_PRIVATE_KEY` qui doit contenir votre clé privée qui a été calculée pour vous et qui se trouve dans
-  le fichier `~/.ssh/id_rsa` sur la machine marathon.
-
-Pour modifier ces 2 variables, il faut
-
-1. afficher dans votre navigateur, la page de votre projet sur gitlab.
-
-   ![](./resources/docs/images/projet_gitlab.png)
-
-2. Puis sélectionner _Paramètres_ ou _Setting_ et l'entrée _intégration et livraisons continues_ ou _CI/CD_.
-
-   ![](./resources/docs/images/entree_variables.png)
-
-3. Créez la variable `NAME`
-
-   ![](./resources/docs/images/cle_name.png)
-4. Créez la variable `SSH_PRIVATE_KEY`
-
-   ![](./resources/docs/images/cle_ssh_private_key.png)
-
-### Commandes sur la machine marathon
-
-Lors du premier déploiement, vous devez initialiser l'environnement de votre site sur le serveur marathon.
-
-Comme, la connexion avec la base de données.
-Pour cela, vous devez à nouveau modifier le fichier `.env`.
-
-Les commandes à taper lors du premier déploiement :
-
-```shell
-# liaison avec le SGBD et la base de données utilisée
-cp .env.example .env
-
-#########################################################
-#
-# Ici il faut modifier en particulier les variables suivantes
-#
-# DB_CONNECTION=mysql
-# DB_HOST=127.0.0.1
-# DB_PORT=3306
-# DB_DATABASE=but25_groupeXX
-# DB_USERNAME=but25_groupeXX
-# DB_PASSWORD=password_but25_groupeXX
-#
-#
-#########################################################
-
-# Génération de la clé initiale
-
-php artisan key:generate
-
-# génération des tables dans votre base de données
-
-php artisan migrate
-
-# ou pour ré-initialiser
-
-php artisan migrate:fresh
-
-# Initialisation des données de départ
-
-cp -r resources/images storage/app/public
-
-# Création du lien physique en storage/app/public et public/storage
-
-php artisan storage:link
-
-# Ajout de données aléatoire dans les tables de la base de données
-
-php artisan db:seed
+## 📦 Structure du projet
 
 ```
+VsPunk/
+├── app/              # Logique applicative (Controllers, Models, etc.)
+├── config/           # Fichiers de configuration
+├── database/         # Migrations et seeders
+├── public/           # Point d'entrée et assets publics
+├── resources/        # Vues Blade, CSS, images
+├── routes/           # Définition des routes
+├── storage/          # Fichiers générés et uploads
+└── tests/            # Tests unitaires et fonctionnels
+```
 
-À partir de là, votre site doit être visible avec l'url : `http://marathon/~but25_groupeXX` avec `XX` votre numéro
-de groupe.
+## 🔧 Commandes utiles
 
+```bash
+# Vider le cache
+php artisan cache:clear
+
+# Regénérer les autoloads
+composer dump-autoload
+
+# Lancer les tests
+php artisan test
+
+# Créer un nouveau contrôleur
+php artisan make:controller NomController
+
+# Créer une nouvelle migration
+php artisan make:migration create_nom_table
+```
+
+## 🚢 Déploiement
+
+### Configuration CI/CD (GitLab)
+
+Le projet est configuré avec GitLab CI pour un déploiement automatique. Configurez les variables suivantes dans votre projet GitLab :
+
+- `NAME` : Votre identifiant de connexion sur le serveur
+- `SSH_PRIVATE_KEY` : Votre clé SSH privée
+
+### Déploiement manuel
+
+```bash
+# Sur le serveur de production
+composer install --optimize-autoloader --no-dev
+php artisan config:cache
+php artisan route:cache
+php artisan view:cache
+npm run build
+```
+
+## 👥 Contributeurs
+
+Projet développé par **but25_groupe2**
+- Léo Morel
+- Jean-Baptiste Hie
+- Martin Bacqueville
+- Baptiste Dewaele
+- Alexis Coquel
+- Gaspard Degorre
+- Hugo Legrand
+- Théo Marquilly
+
+## 📝 Licence
+
+Ce projet est un projet éducatif développé dans le cadre d'un cursus universitaire.
+
+## 🐛 Signaler un bug
+
+Si vous rencontrez un problème, n'hésitez pas à ouvrir une [issue](https://github.com/leoyeh62/VsPunk/issues) sur GitHub.
+
+## 🖼️ Images du Site 
+![page d'accueil]()
